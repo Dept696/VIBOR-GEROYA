@@ -1,0 +1,105 @@
+/* Общие стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('images/background.jpg'); /* Фоновое изображение */
+    background-size: cover; /* Растягиваем изображение на весь экран */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Запрещаем повторение изображения */
+    background-attachment: fixed; /* Фиксируем фон при прокрутке */
+    min-height: 100vh; /* Минимальная высота страницы */
+}
+
+.container {
+    max-width: 1000px; /* Ограничение ширины контейнера */
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для контента */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для объема */
+}
+
+.pointer {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid #000; /* Черная стрелка */
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.wheel-container {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    position: relative;
+    border: 5px solid #fff; /* Белая рамка вокруг колеса */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для объема */
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+        #ff9a9e 0% 10%,
+        #fad0c4 10% 20%,
+        #fbc2eb 20% 30%,
+        #c6e4ff 30% 40%,
+        #dcedc1 40% 50%,
+        #fff7cc 50% 60%,
+        #ffd8b1 60% 70%,
+        #a8e6cf 70% 80%,
+        #c8c8a9 80% 90%,
+        #ffcfd2 90% 100%
+    );
+    transition: transform 5s ease-out; /* Плавная анимация */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стили для кнопок */
+.btn-lg {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 20px; /* Закругленные углы */
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-lg:hover {
+    transform: scale(1.1); /* Увеличение кнопки при наведении */
+}
+
+/* Размещение колес в одну строку */
+.d-flex {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    gap: 20px; /* Расстояние между колесами */
+}
+
+/* Адаптивность */
+@media (max-width: 800px) {
+    .d-flex {
+        flex-direction: column; /* Колеса будут друг под другом на маленьких экранах */
+        align-items: center;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
