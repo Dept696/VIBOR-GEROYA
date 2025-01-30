@@ -25,15 +25,15 @@ const heroes = [
 
 const builds = [
     "Поздний керри", "Агрессивный ранний керри",
-    "Универсальная поддержка", "фулл сапп",
-    "мидер через прокаст", "Роумящий мидер",
-    "оффлейнер танк", "Сплит-пуш оффлейнер",
+    "Универсальная поддержка", "Тяжелая поддержка",
+    "Взрывной мидер", "Роуминговый мидер",
+    "Танковый оффлейнер", "Сплит-пуш оффлейнер",
     "Фарм в лесу", "Ганкер из леса",
-    "Инициатор командных боев", "инициатор",
+    "Инициатор командных боев", "Захватывающий инициатор",
     "Контроль толпы", "Комбо с оглушением",
-    "фаст пуш", "Очистка волн",
-    "глухая оборона", "через ауры",
-    "Полу-керри"
+    "Сетевой пуш", "Очистка волн",
+    "Защита базы", "Защитная аура",
+    "Полу-керри", "Универсальная поддержка"
 ];
 
 // Получаем элементы DOM
@@ -45,23 +45,30 @@ function createWheel(containerId, items) {
     const wheelContainer = document.getElementById(containerId);
     wheelContainer.innerHTML = '';
 
+    // Создаем колесо с градиентом
     const wheel = document.createElement('div');
     wheel.className = 'wheel';
-
-    // Создаем конический градиент
-    const gradient = items.map((_, index) => {
-        const start = (index / items.length) * 100;
-        const end = ((index + 1) / items.length) * 100;
-        return `hsl(${(index / items.length) * 360}, 100%, 50%) ${start}% ${end}%`;
-    }).join(',');
-
-    wheel.style.background = `conic-gradient(${gradient})`;
-
     wheelContainer.appendChild(wheel);
+
+    // Создаем контейнер для иконок
+    const wheelIcons = document.createElement('div');
+    wheelIcons.className = 'wheel-icons';
+
+    // Добавляем иконки героев
+    items.forEach(item => {
+        const icon = document.createElement('img');
+        icon.src = `images/heroes/${item}.png`; // Путь к иконке
+        icon.alt = item;
+        icon.style.display = 'none'; // Скрываем все иконки
+        wheelIcons.appendChild(icon);
+    });
+
+    wheelContainer.appendChild(wheelIcons);
 }
 
-function spinWheel(wheelSelector, items, resultElementId) {
+function spinWheel(wheelSelector, items, resultElementId, iconContainerClass) {
     const wheel = document.querySelector(wheelSelector);
+    const wheelIcons = document.querySelector(`.${iconContainerClass}`);
     const spins = Math.floor(Math.random() * 10) + 5; // Минимум 5 полных оборотов
     const extraDegrees = Math.floor(Math.random() * 360); // Случайный угол поворота
     const totalRotation = spins * 360 + extraDegrees;
@@ -76,7 +83,13 @@ function spinWheel(wheelSelector, items, resultElementId) {
 
         // Определяем выбранный элемент
         const selectedIndex = Math.floor(extraDegrees / (360 / items.length)) % items.length;
-        document.getElementById(resultElementId).textContent = items[selectedIndex];
+        const selectedItem = items[selectedIndex];
+        document.getElementById(resultElementId).textContent = selectedItem;
+
+        // Отображаем выбранную иконку
+        const icons = document.querySelectorAll(`.${iconContainerClass} img`);
+        icons.forEach(icon => icon.style.display = 'none'); // Скрываем все иконки
+        icons[selectedIndex].style.display = 'block'; // Показываем выбранную иконку
 
         // Проигрываем звук щелчка
         clickSound.play();
@@ -85,7 +98,7 @@ function spinWheel(wheelSelector, items, resultElementId) {
 
 // Логика для кнопок
 spinHeroButton.addEventListener('click', () => {
-    spinWheel('#heroWheelContainer .wheel', heroes, 'selectedHero');
+    spinWheel('#heroWheelContainer .wheel', heroes, 'selectedHero', 'wheel-icons');
 });
 
 spinBuildButton.addEventListener('click', () => {

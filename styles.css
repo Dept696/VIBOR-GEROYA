@@ -60,10 +60,31 @@ body {
         #c8c8a9 80% 90%,
         #ffcfd2 90% 100%
     );
-    transition: transform 5s ease-out; /* Плавная анимация */
+    transition: transform 5s ease-out; /* Анимация вращения */
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Стили для иконок внутри колеса */
+.wheel-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Размер иконок относительно колеса */
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wheel-icons img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%; /* Закругленные углы для круглой иконки */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для объема */
+    display: none; /* Скрываем все иконки по умолчанию */
 }
 
 /* Стили для кнопок */
