@@ -18,6 +18,7 @@ body {
     background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для контента */
     border-radius: 10px; /* Закругленные углы */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для объема */
+    padding-bottom: 40px; /* Увеличиваем нижний отступ */
 }
 
 .pointer {
@@ -60,7 +61,7 @@ body {
         #c8c8a9 80% 90%,
         #ffcfd2 90% 100%
     );
-    transition: transform 5s ease-out; /* Анимация вращения */
+    transition: transform 5s ease-out; /* Плавная анимация */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,18 +88,66 @@ body {
     display: none; /* Скрываем все иконки по умолчанию */
 }
 
-/* Стили для кнопок */
-.btn-lg {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    border-radius: 20px; /* Закругленные углы */
-    transition: transform 0.2s ease-in-out;
+/* Стили для маленьких колес */
+.small-wheel-container {
+    width: 100px;
+    height: 100px;
+    position: relative;
 }
 
-.btn-lg:hover {
-    transform: scale(1.1); /* Увеличение кнопки при наведении */
+.small-wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+        #ff9a9e 0% 10%,
+        #fad0c4 10% 20%,
+        #fbc2eb 20% 30%,
+        #c6e4ff 30% 40%,
+        #dcedc1 40% 50%,
+        #fff7cc 50% 60%,
+        #ffd8b1 60% 70%,
+        #a8e6cf 70% 80%,
+        #c8c8a9 80% 90%,
+        #ffcfd2 90% 100%
+    );
+    transition: transform 3s ease-out; /* Плавная анимация */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Делаем колеса кликабельными */
+}
+
+/* Контейнер для иконок в маленьких колесах */
+.small-wheel .wheel-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Размер иконок относительно колеса */
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-wheel .wheel-icons img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%; /* Закругленные углы для круглой иконки */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для объема */
+    display: none; /* Скрываем все иконки по умолчанию */
+}
+
+/* Уменьшаем шрифт подписей предметов */
+.item-label {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.small-item-text {
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 /* Размещение колес в одну строку */
@@ -106,6 +155,7 @@ body {
     display: flex;
     justify-content: center; /* Центрирование по горизонтали */
     gap: 20px; /* Расстояние между колесами */
+    margin-top: 20px; /* Добавляем отступ сверху */
 }
 
 /* Адаптивность */
